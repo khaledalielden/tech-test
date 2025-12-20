@@ -12,7 +12,6 @@ public:
     
     std::chrono::system_clock::time_point getTradeDate() const override { return tradeDate_; }
     void setTradeDate(const std::chrono::system_clock::time_point& date) override { tradeDate_ = date; }
-    
 
   //  std::chrono::system_clock::time_point getValueDate() const override { return tradeDate_; }
   //  void setValueDate(const std::chrono::system_clock::time_point& date) override { tradeDate_ = date; }
@@ -54,7 +53,6 @@ private:
     std::chrono::system_clock::time_point valueDate_;
     std::string instrument_;
     std::string counterparty_;
-  //  double notional_ = 0.0;
     double rate_ = 0.0;
     std::string tradeType_;
     double amount_;
