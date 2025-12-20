@@ -13,4 +13,5 @@ public:
     virtual void setDataFile(const std::string& file) = 0;
 };
 
+
 #endif // FXITRADELOADER_H
