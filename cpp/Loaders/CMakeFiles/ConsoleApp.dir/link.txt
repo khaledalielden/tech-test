@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/ConsoleApp.dir/ConsoleApp/main.cpp.o -o ConsoleApp  libModels.a libLoaders.a libPricers.a libRiskSystem.a libLoaders.a libPricers.a libModels.a -lpthread 

@@ -1,0 +1,8 @@
+/disk/plasma/kad/projects/test/tech-test-main/cpp/Loaders/CMakeFiles/Models.dir
+/disk/plasma/kad/projects/test/tech-test-main/cpp/Loaders/CMakeFiles/Loaders.dir
+/disk/plasma/kad/projects/test/tech-test-main/cpp/Loaders/CMakeFiles/Pricers.dir
+/disk/plasma/kad/projects/test/tech-test-main/cpp/Loaders/CMakeFiles/RiskSystem.dir
+/disk/plasma/kad/projects/test/tech-test-main/cpp/Loaders/CMakeFiles/ConsoleApp.dir
+/disk/plasma/kad/projects/test/tech-test-main/cpp/Loaders/CMakeFiles/Tests.dir
+/disk/plasma/kad/projects/test/tech-test-main/cpp/Loaders/CMakeFiles/edit_cache.dir
+/disk/plasma/kad/projects/test/tech-test-main/cpp/Loaders/CMakeFiles/rebuild_cache.dir
