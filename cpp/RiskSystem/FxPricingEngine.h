@@ -20,7 +20,6 @@ public:
 
     /**
      * Implementation of the pricing function for FX trades.
-     * Note: This uses FXITrade* as the first parameter.
      */
     void price(FXITrade* trade, IScalarResultReceiver* resultReceiver) override;
 };
