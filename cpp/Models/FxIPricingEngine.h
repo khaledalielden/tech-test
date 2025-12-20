@@ -9,6 +9,7 @@ class FxIPricingEngine {
 public:
     virtual ~FxIPricingEngine() = default;
     virtual void price(FXITrade* trade, IScalarResultReceiver* resultReceiver) = 0;
+
 };
 
 #endif // FXIPRICINGENGINE_H
