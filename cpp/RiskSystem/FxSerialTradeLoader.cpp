@@ -1,7 +1,7 @@
 #include "FxSerialTradeLoader.h"
 #include "../Loaders/FxTradeLoader.h"
 
-// new
+
 std::vector<FXITradeLoader*> FxSerialTradeLoader::FxgetTradeLoaders() {
     std::vector<FXITradeLoader*> loaders;
     
