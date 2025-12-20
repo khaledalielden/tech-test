@@ -6,14 +6,6 @@
 #include "../Loaders/FXITradeLoader.h"
 #include "../Models/FXITrade.h"
 
-/*
-class FxSerialTradeLoader {
-private:
-    std::vector<FXITradeLoader*> FxgetTradeLoaders();
-public:
-    std::vector<std::vector<FXITrade*>> loadTrades();
-};
-*/
 
 
 
