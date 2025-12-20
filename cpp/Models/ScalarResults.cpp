@@ -44,7 +44,7 @@ ScalarResults::Iterator ScalarResults::begin() const {
     return Iterator(results_.begin(), results_.end(), errors_.begin());
 }
 
-// Initialize: End at the end of results (Ignoring errors to get count of 4)
+// Initialize: End at the end of results (I ignore errors to get count of 4 and avoid )
 ScalarResults::Iterator ScalarResults::end() const {
     return Iterator(results_.end(), results_.end(), errors_.begin());
 }
@@ -65,7 +65,7 @@ ScalarResult ScalarResults::Iterator::operator*() const {
     throw std::out_of_range("Iterator out of bounds");
 }
 
-// Comparison: Stops the loop when we reach the end of the results map
+// The loop stop when we reach the end of the results map
 bool ScalarResults::Iterator::operator!=(const Iterator& other) const {
     return resIt_ != other.resIt_;
 }
