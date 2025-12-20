@@ -14,14 +14,9 @@ public:
     // Constructor
     CorpBondPricingEngine() = default;
 
-    // Virtual destructor ensuring proper cleanup
+    // Virtual destructor ensuring cleanup
     virtual ~CorpBondPricingEngine() = default;
 
-    /**
-     * Prices a Corporate Bond trade.
-     * @param trade The trade to price (expected to be a Corporate Bond)
-     * @param resultReceiver The receiver to notify of the result or any errors
-     */
     void price(ITrade* trade, IScalarResultReceiver* resultReceiver) override;
 };
 
