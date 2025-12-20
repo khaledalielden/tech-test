@@ -33,7 +33,7 @@ private:
 };
 
 
-// add a new class for  Fx
+// add a new class for  Fx trade list
 
 class TradeListX : public FXITradeReceiver {
 public:
