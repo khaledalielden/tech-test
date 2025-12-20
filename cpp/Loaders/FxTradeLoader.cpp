@@ -7,10 +7,7 @@
 #include <chrono>
 
 #include <algorithm>
-//===
-#include <iostream>
-using namespace std;
-//===
+
 FxTrade* FxTradeLoader::createFxTradeFromLine(std::string line) {
     std::vector<std::string> items;
     std::stringstream ss(line);
@@ -40,7 +37,7 @@ FxTrade* FxTradeLoader::createFxTradeFromLine(std::string line) {
         trade->setAmount(std::stod(items[4]));
         trade->setRate(std::stod(items[5]));
          } catch (...) {
-        delete trade; // Clean up memory if conversion fails
+        delete trade; // Clean up memory if conversion to double fails
 
         throw std::runtime_error("Invalid numeric data in line");
     }
@@ -127,17 +124,3 @@ void FxTradeLoader::setDataFile(const std::string& file) {
 
 
 
-/*
-// NOTE: These methods are only here to allow the solution to compile prior to the test being completed.
-
-std::vector<ITrade*> FxTradeLoader::loadTrades() {
-    throw std::runtime_error("Not implemented");
-}
-
-std::string FxTradeLoader::getDataFile() const {
-    throw std::runtime_error("Not implemented");
-}
-
-void FxTradeLoader::setDataFile(const std::string& file) {
-    throw std::runtime_error("Not implemented");
-}*/
