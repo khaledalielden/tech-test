@@ -8,6 +8,5 @@ public:
     FXTradeList() = default;
 };
 
-
 #endif // FXTRADELIST_H
 
