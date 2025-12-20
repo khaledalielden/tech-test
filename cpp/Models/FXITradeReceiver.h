@@ -1,7 +1,6 @@
 #ifndef FXITRADERECEIVER_H
 #define FXITRADERECEIVER_H
 
-
 #include "FXITrade.h"
 
 class FXITradeReceiver {
