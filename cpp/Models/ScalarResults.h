@@ -36,6 +36,7 @@ public:
 
     private:
         // Internal state to track progress through the two maps
+
         std::map<std::string, double>::const_iterator resIt_;
         std::map<std::string, double>::const_iterator resEnd_;
         std::map<std::string, std::string>::const_iterator errIt_;
