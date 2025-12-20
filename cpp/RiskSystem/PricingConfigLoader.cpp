@@ -18,7 +18,7 @@ PricingEngineConfig configs; // This is the vector of config that we will return
     }
 
     std::string line;
-    // Read regex string for safety
+    // Read regex string
     std::regex engineregex("tradeType=\"([^\"]+)\"\\s+assembly=\"([^\"]+)\"\\s+pricingEngine=\"([^\"]+)\"");
     std::smatch match;
 
