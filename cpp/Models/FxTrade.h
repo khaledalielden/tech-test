@@ -31,8 +31,10 @@ public:
 
 private:
   //  std::string tradeType_;
+
     std::string tradeId_;
-  //  std::chrono::system_clock::time_point valueDate_;
+
+//  std::chrono::system_clock::time_point valueDate_;
    // std::double Amount_;
 
 };
