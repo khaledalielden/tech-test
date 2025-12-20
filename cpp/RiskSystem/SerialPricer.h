@@ -14,7 +14,6 @@
 
 /**
  * SerialPricer handles the pricing of standard trades (Bonds).
- * It expects trade containers of type ITrade*.
  */
 class SerialPricer {
 private:
@@ -32,7 +31,6 @@ public:
 
 /**
  * FxSerialPricer handles the pricing of FX trades.
- * It expects trade containers of type FXITrade*.
  */
 class FxSerialPricer {
 private:
