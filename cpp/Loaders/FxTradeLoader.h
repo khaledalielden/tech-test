@@ -9,7 +9,6 @@
 #include <memory>
 
 
-
 class FxTradeLoader : public FXITradeLoader {
 private:
   //  static const std::string fxseparator = "¬";
