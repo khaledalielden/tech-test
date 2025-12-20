@@ -6,9 +6,6 @@
 #include <iomanip>
 #include <chrono>
 
-#include <iostream>
-using namespace std;
-
 BondTrade* BondTradeLoader::createTradeFromLine(std::string line) {
     std::vector<std::string> items;
     std::stringstream ss(line);
@@ -21,6 +18,7 @@ BondTrade* BondTradeLoader::createTradeFromLine(std::string line) {
     if (items.size() < 7) {
         throw std::runtime_error("Invalid line format");
     }
+
     // adjustment
     // remove any trailing whitespace/newlines for tradeId
     std::string trade_id = items[6];
@@ -37,9 +35,6 @@ BondTrade* BondTradeLoader::createTradeFromLine(std::string line) {
   //  trade->setTradeId(items[6]);
    // string sub = items[6].substr(0, 4);
 
-
-
- //   cout << " space " << std::stod(items[4]) <<endl ;
     
     std::tm tm = {};
     std::istringstream dateStream(items[1]);
