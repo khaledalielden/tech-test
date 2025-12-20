@@ -12,7 +12,6 @@ public:
     virtual std::chrono::system_clock::time_point getTradeDate() const = 0;
     virtual void setTradeDate(const std::chrono::system_clock::time_point& date) = 0;
 
-
     virtual std::chrono::system_clock::time_point getValueDate() const = 0;
     virtual void setValueDate(const std::chrono::system_clock::time_point& date2) = 0;
 
