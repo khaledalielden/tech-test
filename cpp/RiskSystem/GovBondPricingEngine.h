@@ -12,10 +12,8 @@ public:
     GovBondPricingEngine() = default;
     virtual ~GovBondPricingEngine() = default;
 
-    /**
-     * Implementation of the interface method.
-     * Takes a generic ITrade pointer and the result receiver.
-     */
+    
+    // Implementation of the interface method.
     void price(ITrade* trade, IScalarResultReceiver* resultReceiver) override;
 };
 
