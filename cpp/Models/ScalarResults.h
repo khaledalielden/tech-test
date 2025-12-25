@@ -8,7 +8,10 @@
 #include <optional>
 #include <string>
 #include <iterator>
+#include <iostream>
 
+// Forward declaration of the operator for global scope
+std::ostream& operator<<(std::ostream& os, const ScalarResult& res);
 
 class ScalarResults : public IScalarResultReceiver {
 public:
@@ -25,27 +28,23 @@ public:
         using iterator_category = std::forward_iterator_tag;
         using value_type = ScalarResult;
         using difference_type = std::ptrdiff_t;
-        using pointer = ScalarResult*;
-        using reference = ScalarResult&;
-
-        Iterator() = default;
+        
+        // Default constructor for 'end' comparison
+        Iterator() : index_(-1), parent_(nullptr) {}
 
         Iterator& operator++();
         ScalarResult operator*() const;
         bool operator!=(const Iterator& other) const;
 
     private:
-        // Internal state to track progress through the two maps
+        // Instead of map iterators, we store the unique keys and current index
+        std::vector<std::string> allKeys_;
+        int index_; 
+        const ScalarResults* parent_;
 
-        std::map<std::string, double>::const_iterator resIt_;
-        std::map<std::string, double>::const_iterator resEnd_;
-        std::map<std::string, std::string>::const_iterator errIt_;
-
-        // Private constructor for begin() and end()
-        Iterator(std::map<std::string, double>::const_iterator rIt,
-                 std::map<std::string, double>::const_iterator rEnd,
-                 std::map<std::string, std::string>::const_iterator eIt)
-            : resIt_(rIt), resEnd_(rEnd), errIt_(eIt) {}
+        // Private constructor used by begin() and end()
+        Iterator(std::vector<std::string> keys, int idx, const ScalarResults* parent)
+            : allKeys_(std::move(keys)), index_(idx), parent_(parent) {}
 
         friend class ScalarResults;
     };
@@ -59,5 +58,3 @@ private:
 };
 
 #endif // SCALARRESULTS_H
-
-
