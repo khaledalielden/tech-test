@@ -1,67 +1,35 @@
-#ifndef SCALARRESULTS_H
-#define SCALARRESULTS_H
+#ifndef SCALARRESULT_H
+#define SCALARRESULT_H
 
-#include "IScalarResultReceiver.h"
-#include "ScalarResult.h"
-#include <map>
-#include <vector>
-#include <optional>
 #include <string>
-#include <iterator>
-#include <iostream>
+#include <optional>
+#include <stdexcept>
+#include <utility> // For std::move
 
-// Forward declaration of the operator for global scope
-std::ostream& operator<<(std::ostream& os, const ScalarResult& res);
-
-class ScalarResults : public IScalarResultReceiver {
+class ScalarResult {
 public:
-    virtual ~ScalarResults();
-    std::optional<ScalarResult> operator[](const std::string& tradeId) const;
-
-    bool containsTrade(const std::string& tradeId) const;
-
-    virtual void addResult(const std::string& tradeId, double result) override;
-    virtual void addError(const std::string& tradeId, const std::string& error) override;
-
-    class Iterator {
-    public:
-        using iterator_category = std::forward_iterator_tag;
-        using value_type = ScalarResult;
-        using difference_type = std::ptrdiff_t;
-        
-        // Default constructor
-        Iterator() : index_(-1), parent_(nullptr) {}
-
-        Iterator& operator++();
-        ScalarResult operator*() const;
-        
-        // Modified comparison: Only check index and parent identity
-        bool operator!=(const Iterator& other) const {
-            return index_ != other.index_;
+    ScalarResult(const std::string& tradeId, const std::optional<double>& result, const std::optional<std::string>& error)
+        : tradeId_(tradeId), result_(result), error_(error) {
+        if (tradeId.empty()) {
+            throw std::invalid_argument("A non null, non empty trade id must be provided");
         }
+    }
+    
+    // Getters returning by value for optionals and const ref for string to avoid copies
+    const std::string& getTradeId() const { return tradeId_; }
+    std::optional<double> getResult() const { return result_; }
+    std::optional<std::string> getError() const { return error_; }
 
-        bool operator==(const Iterator& other) const {
-            return index_ == other.index_;
-        }
-
-    private:
-        std::vector<std::string> allKeys_;
-        int index_; 
-        const ScalarResults* parent_;
-
-        // Constructor used by begin()
-        Iterator(std::vector<std::string> keys, int idx, const ScalarResults* parent)
-            : allKeys_(std::move(keys)), index_(idx), parent_(parent) {}
-
-        friend class ScalarResults;
-    };
-
-    Iterator begin() const;
-    Iterator end() const;
 
 private:
-    std::map<std::string, double> results_;
-    std::map<std::string, std::string> errors_;
+    std::string tradeId_;
+    std::optional<double> result_;
+    std::optional<std::string> error_;
 };
 
-#endif // SCALARRESULTS_H
+
+
+#endif // SCALARRESULT_H
+
+
+
