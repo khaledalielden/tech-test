@@ -1,42 +1,29 @@
-#ifndef STREAMINGTRADELOADER_H
-#define STREAMINGTRADELOADER_H
+#ifndef PARALLELPRICER_H
+#define PARALLELPRICER_H
 
-#include "../Loaders/ITradeLoader.h"
+#include "../Models/IPricingEngine.h"
 #include "../Models/ITrade.h"
 #include "../Models/IScalarResultReceiver.h"
-#include "../Models/IPricingEngine.h"
-#include <vector>
+#include "PricingConfigLoader.h"
 #include <map>
+#include <vector>
 #include <string>
+#include <thread>
+#include <mutex>
+#include <future>
 
-#include "../Loaders/FXITradeLoader.h"
-#include "../Models/FXITrade.h"
-
-class StreamingTradeLoader {
+class ParallelPricer {
 private:
     std::map<std::string, IPricingEngine*> pricers_;
+    std::mutex resultMutex_;
     
-    std::vector<ITradeLoader*> getTradeLoaders();
     void loadPricers();
     
 public:
-    ~StreamingTradeLoader();
+    ~ParallelPricer();
     
-    void loadAndPrice(IScalarResultReceiver* resultReceiver);
+    void price(const std::vector<std::vector<ITrade*>>& tradeContainers, 
+               IScalarResultReceiver* resultReceiver);
 };
 
-// new
-class FxStreamingTradeLoader {
-private:
-    std::map<std::string, IPricingEngine*> pricers_;
-    
-    std::vector<FXITradeLoader*> getTradeLoaders();
-    void loadPricers();
-    
-public:
-    ~FxStreamingTradeLoader();
-    
-    void loadAndPrice(IScalarResultReceiver* resultReceiver);
-};
-
-#endif // STREAMINGTRADELOADER_H
+#endif // PARALLELPRICER_H
