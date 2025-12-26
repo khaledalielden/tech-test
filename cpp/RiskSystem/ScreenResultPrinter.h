@@ -8,4 +8,5 @@ public:
     void printResults(ScalarResults& results);
 };
 
+
 #endif // SCREENRESULTPRINTER_H
