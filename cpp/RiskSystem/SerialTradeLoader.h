@@ -15,5 +15,12 @@ private:
 public:
     std::vector<std::vector<ITrade*>> loadTrades();
 };
-
+/*
+class FxSerialTradeLoader {
+private:
+    std::vector<FXITradeLoader*> FxgetTradeLoaders();
+public:
+    std::vector<std::vector<FXITrade*>> loadTrades();
+};
+*/
 #endif // SERIALTRADELOADER_H
