@@ -29,20 +29,27 @@ public:
         using value_type = ScalarResult;
         using difference_type = std::ptrdiff_t;
         
-        // Default constructor for 'end' comparison
+        // Default constructor
         Iterator() : index_(-1), parent_(nullptr) {}
 
         Iterator& operator++();
         ScalarResult operator*() const;
-        bool operator!=(const Iterator& other) const;
+        
+        // Modified comparison: Only check index and parent identity
+        bool operator!=(const Iterator& other) const {
+            return index_ != other.index_;
+        }
+
+        bool operator==(const Iterator& other) const {
+            return index_ == other.index_;
+        }
 
     private:
-        // Instead of map iterators, we store the unique keys and current index
         std::vector<std::string> allKeys_;
         int index_; 
         const ScalarResults* parent_;
 
-        // Private constructor used by begin() and end()
+        // Constructor used by begin()
         Iterator(std::vector<std::string> keys, int idx, const ScalarResults* parent)
             : allKeys_(std::move(keys)), index_(idx), parent_(parent) {}
 
