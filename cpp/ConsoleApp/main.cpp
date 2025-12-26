@@ -31,25 +31,36 @@ int _getch() {
 int main(int argc, char* argv[]) {
     ScalarResults results;
 
-    // 1. load and price BONDS
+    // 1. Load and price BONDS
     SerialTradeLoader bondLoader;
-    auto bondTrades = bondLoader.loadTrades(); // Loads from BondTrades.dat
-    
+    auto bondTrades = bondLoader.loadTrades(); 
+//    std::cout << "DEBUG: bond Loader found " << bondTrades.size() << " groups." << std::endl; 
+
     SerialPricer bondPricer;
     bondPricer.price(bondTrades, &results);
-    
-    // 2. load and price Fx
+
+    // 2. Load and price FX
     FxSerialTradeLoader fxLoader;
-    auto fxTrades = fxLoader.loadTrades();    // Loads from FxTrades.dat
-    
+    auto fxTrades = fxLoader.loadTrades();    
+//    std::cout << "DEBUG: FX Loader found " << fxTrades.size() << " groups." << std::endl; 
+
+
     FxSerialPricer fxPricer;
     fxPricer.Fxprice(fxTrades, &results);
-    
-    std::cout << "Press any key to exit.." << std::endl;
-    _getch();
-    
 
-    // Clean up the memory 
+    // --- ADDED THIS SECTION ---
+    // 3. Print the results to the screen
+    std::cout << "\n--- Calculation Results ---" << std::endl;
+    ScreenResultPrinter screenPrinter;
+    screenPrinter.printResults(results);
+    // ---------------------------
+
+
+
+    std::cout << "\nPress any key to exit.." << std::endl;
+    _getch();
+
+    // Clean up memory
     for (auto& container : bondTrades) {
         for (ITrade* trade : container) delete trade;
     }
@@ -61,22 +72,3 @@ int main(int argc, char* argv[]) {
 }
 
 
-
-/*
-
-int main(int argc, char* argv[]) {
-    SerialTradeLoader tradeLoader;
-    auto allTrades = tradeLoader.loadTrades();
-    
-    ScalarResults results;
-    SerialPricer pricer;
-    pricer.price(allTrades, &results);
-    
-    ScreenResultPrinter screenPrinter;
-    screenPrinter.printResults(results);
-    
-    std::cout << "Press any key to exit.." << std::endl;
-    _getch();
-    
-    return 0;
-}*/
