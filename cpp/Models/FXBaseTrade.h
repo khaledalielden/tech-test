@@ -12,6 +12,7 @@ public:
     
     std::chrono::system_clock::time_point getTradeDate() const override { return tradeDate_; }
     void setTradeDate(const std::chrono::system_clock::time_point& date) override { tradeDate_ = date; }
+    
 
   //  std::chrono::system_clock::time_point getValueDate() const override { return tradeDate_; }
   //  void setValueDate(const std::chrono::system_clock::time_point& date) override { tradeDate_ = date; }
@@ -29,8 +30,8 @@ public:
     void setRate(double rate) override { rate_ = rate; }
     
  //   std::string getTradeType() const override = 0;
-    std::string getTradeType() const override { return tradeType_; }                         // Added
-    void setTradeType(const std::string& tradetype) override { tradeType_ = tradetype; }
+ //   std::string getTradeType() const override { return tradeType_; }                         // Added
+ //   void setTradeType(const std::string& tradetype) override { tradeType_ = tradetype; }
 
     double getAmount() const override { return amount_; }             // Added the override function
     void setAmount(double amount) override { amount_ = amount; }     // Added the override function
@@ -53,10 +54,10 @@ private:
     std::chrono::system_clock::time_point valueDate_;
     std::string instrument_;
     std::string counterparty_;
+  //  double notional_ = 0.0;
     double rate_ = 0.0;
-    std::string tradeType_;
+  //  std::string tradeType_;
     double amount_;
 };
 
 #endif // FXBASETRADE_H
-
