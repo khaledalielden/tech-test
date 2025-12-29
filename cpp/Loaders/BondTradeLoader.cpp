@@ -57,7 +57,7 @@ BondTrade* BondTradeLoader::createTradeFromLine(std::string line) {
         notional = std::stod(items[4]);
         rate = std::stod(items[5]);
     } catch (...) {
-        // If conversion fails (e.g. data is text), skip this line safely
+        // If conversion fails (e.g. data is text), skip this line
         return nullptr; 
     }
 
