@@ -25,7 +25,7 @@ BondTrade* BondTradeLoader::createTradeFromLine(std::string line) {
     
     // Split the line by the separator (usually comma or tab)
     while (std::getline(ss, item, separator)) {
-        // Trim whitespace and hidden carriage returns (\r)
+        // remove whitespace and hidden carriage returns (\r)
         item.erase(0, item.find_first_not_of(" \t\r\n"));
         auto last = item.find_last_not_of(" \t\r\n");
         if (last != std::string::npos) item.erase(last + 1);
@@ -34,12 +34,12 @@ BondTrade* BondTradeLoader::createTradeFromLine(std::string line) {
     }
 
     // 2. Filter Header/Footer/Malformed rows
-    // If the first item is "Type" (header) or "END" (footer), we return nullptr to skip it
+    // If the first item is "Type" (header) or "END" (footer), return nullptr to skip it
     if (items.empty() || items[0] == "Type" || items[0] == "END") {
         return nullptr;
     }
 
-    // Ensure we have the minimum required columns (usually 7)
+    // Ensure that the minimum required columns (usually 7)
     if (items.size() < 7) {
         return nullptr; 
     }
@@ -50,7 +50,7 @@ BondTrade* BondTradeLoader::createTradeFromLine(std::string line) {
         return nullptr;
     }
     
-    // 4. Safe Numeric Conversion (Prevents stod crash)
+    // 4. Safe Numeric Conversion (prevents stod crash)
     double notional = 0.0;
     double rate = 0.0;
     try {
