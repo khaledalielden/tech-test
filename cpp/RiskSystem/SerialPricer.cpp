@@ -11,6 +11,7 @@ SerialPricer::~SerialPricer() {
 }
 
 void SerialPricer::loadPricers() {
+    // read xml config file
     if (!pricers_.empty()) return;
     PricingConfigLoader loader;
     loader.setConfigFile("./PricingConfig/PricingEngines.xml");
