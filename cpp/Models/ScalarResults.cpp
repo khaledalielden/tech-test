@@ -8,6 +8,7 @@ ScalarResults::~ScalarResults() = default;
 
 // --- Access Data ---
 std::optional<ScalarResult> ScalarResults::operator[](const std::string& tradeId) const {
+    // TO check the data
     if (!containsTrade(tradeId)) {
         return std::nullopt;
     }
