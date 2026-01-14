@@ -55,30 +55,13 @@ ScalarResults::Iterator ScalarResults::begin() const {
 
     return Iterator(std::move(keys), 0, this);
 }
-/*
-ScalarResults::Iterator ScalarResults::begin() const {
-    // Create a set of all unique keys from both maps
-    std::set<std::string> uniqueKeys;
-    for (auto const& [key, val] : results_) uniqueKeys.insert(key);
-    for (auto const& [key, val] : errors_) uniqueKeys.insert(key);
 
-    // Convert set to a vector for indexed access within the iterator
-    std::vector<std::string> keys(uniqueKeys.begin(), uniqueKeys.end());
-    
-    // Start at index 0, passing 'this' parent to allow map lookups
-    return Iterator(keys, 0, this);
-}
-*/
 ScalarResults::Iterator ScalarResults::end() const {
     // index -1 signals the end. The vector can be empty here.
     return Iterator({}, -1, this); 
 }
-/*
-ScalarResults::Iterator ScalarResults::end() const {
-    // Return an iterator representing the past-the-end position
-    return Iterator({}, -1, this); 
-}
-*/
+
+
 ScalarResults::Iterator& ScalarResults::Iterator::operator++() {
     if (index_ != -1) {
         index_++;
@@ -109,10 +92,6 @@ ScalarResult ScalarResults::Iterator::operator*() const {
     return ScalarResult(tradeId, price, errMsg);
 }
 
-//bool ScalarResults::Iterator::operator!=(const Iterator& other) const {
-//    // Simpler comparison based on the current index
-//    return index_ != other.index_;
-//}
 
 // --- Helper Functions ---
 
